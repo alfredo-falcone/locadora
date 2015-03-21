@@ -1,0 +1,27 @@
+﻿<Window x:Class="Falcone.Locadora.WPF.Forms.CadastroVeiculo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="CadastroVeiculo" Height="353" Width="651">
+    <Grid>
+        <DataGrid AutoGenerateColumns="False" Height="270" HorizontalAlignment="Left" Name="dgVeiculos" ItemsSource="{Binding}" VerticalAlignment="Top" Width="605" Margin="12,0,0,0" SelectionChanged="dgVeiculos_SelectionChanged" RowEditEnding="dgVeiculos_RowEditEnding" LoadingRow="dgVeiculos_LoadingRow" PreparingCellForEdit="dgVeiculos_PreparingCellForEdit">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Placa}" Header="Placa" ></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Modelo}" Header="Modelo" ></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Ano}" Header="Ano" ></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Quilometragem}" Header="Quilometragem" ></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Status}" IsReadOnly="True"  Header="Status" ></DataGridTextColumn>
+                <DataGridTemplateColumn Header="Ação">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="btAcao" Content="{Binding NomeAcaoPermitida}" Click="btAcao_Click" ></Button>  
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Binding="{Binding Id}" Header="Id" Visibility="Hidden" ></DataGridTextColumn>
+            </DataGrid.Columns>
+            
+        </DataGrid>
+        <Button Content="Gravar" Height="23" HorizontalAlignment="Left" Margin="12,279,0,0" Name="btGravar" VerticalAlignment="Top" Width="75" Click="btGravar_Click" />
+        <Button Content="Sair" Height="23" HorizontalAlignment="Right" Margin="0,279,458,0" Name="btSair" VerticalAlignment="Top" Width="75" />
+    </Grid>
+</Window>

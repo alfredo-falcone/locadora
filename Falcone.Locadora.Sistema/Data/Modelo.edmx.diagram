@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="92ae22634be444cf9b4fba00e74d5ceb" Name="Diagram1">
+        <EntityTypeShape EntityType="DbModel.Aluguel" Width="1.5" PointX="5.25" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbModel.Carro" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbModel.Cliente" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbModel.DadosCartaoCredito" Width="1.5" PointX="5.25" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbModel.Endereco" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <AssociationConnector Association="DbModel.FK_CarroAluguel" ManuallyRouted="false" />
+        <AssociationConnector Association="DbModel.FK_ClienteAluguel" ManuallyRouted="false" />
+        <AssociationConnector Association="DbModel.FK_ClienteCartoes" ManuallyRouted="false" />
+        <AssociationConnector Association="DbModel.FK_ClienteEndereco" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DbModel.Usuario" Width="1.5" PointX="1" PointY="7.5" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

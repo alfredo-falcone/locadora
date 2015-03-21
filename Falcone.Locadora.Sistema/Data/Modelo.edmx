@@ -1,0 +1,427 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DbModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.3.5" ProviderManifestToken="3.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="DbModelStoreContainer">
+    <EntitySet Name="Alugueis" EntityType="DbModel.Store.Alugueis" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Carros" EntityType="DbModel.Store.Carros" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Clientes" EntityType="DbModel.Store.Clientes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DadosCartaoCreditoes" EntityType="DbModel.Store.DadosCartaoCreditoes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Enderecos" EntityType="DbModel.Store.Enderecos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Usuarios" EntityType="DbModel.Store.Usuarios" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Sequenciais" EntityType="DbModel.Store.Sequenciais" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_CarroAluguel" Association="DbModel.Store.FK_CarroAluguel">
+      <End Role="Carros" EntitySet="Carros" />
+      <End Role="Alugueis" EntitySet="Alugueis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClienteAluguel" Association="DbModel.Store.FK_ClienteAluguel">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="Alugueis" EntitySet="Alugueis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClienteCartoes" Association="DbModel.Store.FK_ClienteCartoes">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="DadosCartaoCredito" EntitySet="DadosCartaoCreditoes" />
+    </AssociationSet>
+    <AssociationSet Name="EnderecoCliente" Association="DbModel.Store.EnderecoCliente">
+      <End Role="Endereco" EntitySet="Enderecos" />
+      <End Role="Cliente" EntitySet="Clientes" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Alugueis">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="DataAluguel" Type="datetime" Nullable="false" />
+    <Property Name="DataDevolucao" Type="datetime" Nullable="false" />
+    <Property Name="QuilometragemInicial" Type="int" Nullable="false" />
+    <Property Name="QuilometragemFinal" Type="int" Nullable="false" />
+    <Property Name="Carro_Id" Type="int" Nullable="false" />
+    <Property Name="Cliente_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Carros">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Placa" Type="nvarchar" Nullable="false" MaxLength="Max" />
+    <Property Name="Modelo" Type="nvarchar" Nullable="false" MaxLength="Max" />
+    <Property Name="Ano" Type="int" Nullable="false" />
+    <Property Name="Quilometragem" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Clientes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar" Nullable="false" MaxLength="Max" />
+    <Property Name="CPF" Type="nvarchar" Nullable="false" MaxLength="Max" />
+    <Property Name="Endereco_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DadosCartaoCreditoes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="ClienteId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Enderecos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Logradouro" Type="nvarchar" Nullable="false" MaxLength="Max" />
+    <Property Name="Numero" Type="nvarchar" Nullable="false" MaxLength="Max" />
+    <Property Name="Complemento" Type="nvarchar" Nullable="false" MaxLength="Max" />
+    <Property Name="Fone" Type="nvarchar" Nullable="false" MaxLength="Max" />
+    <Property Name="Cep" Type="nvarchar" Nullable="false" MaxLength="Max" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar" Nullable="false" />
+    <Property Name="Senha" Type="nvarchar" Nullable="false" />
+    <Property Name="Sal" Type="nvarchar" Nullable="false" />
+    <Property Name="Login" Type="nvarchar" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sequenciais">
+    <Key>
+      <PropertyRef Name="Entidade" />
+    </Key>
+    <Property Name="Entidade" Type="nvarchar" Nullable="false" />
+    <Property Name="ProximoSequencial" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_CarroAluguel">
+    <End Role="Carros" Type="DbModel.Store.Carros" Multiplicity="1" />
+    <End Role="Alugueis" Type="DbModel.Store.Alugueis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Carros">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Alugueis">
+        <PropertyRef Name="Carro_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClienteAluguel">
+    <End Role="Clientes" Type="DbModel.Store.Clientes" Multiplicity="1" />
+    <End Role="Alugueis" Type="DbModel.Store.Alugueis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clientes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Alugueis">
+        <PropertyRef Name="Cliente_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClienteCartoes">
+    <End Role="Clientes" Type="DbModel.Store.Clientes" Multiplicity="1" />
+    <End Role="DadosCartaoCredito" Type="DbModel.Store.DadosCartaoCreditoes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clientes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DadosCartaoCredito">
+        <PropertyRef Name="ClienteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EnderecoCliente">
+    <End Role="Endereco" Type="DbModel.Store.Enderecos" Multiplicity="1" />
+    <End Role="Cliente" Type="DbModel.Store.Clientes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Endereco">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cliente">
+        <PropertyRef Name="Endereco_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DbModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="DbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Alugueis" EntityType="DbModel.Aluguel" />
+          <EntitySet Name="Carros" EntityType="DbModel.Carro" />
+          <EntitySet Name="Clientes" EntityType="DbModel.Cliente" />
+          <EntitySet Name="DadosCartaoCreditoes" EntityType="DbModel.DadosCartaoCredito" />
+          <EntitySet Name="Enderecos" EntityType="DbModel.Endereco" />
+          <AssociationSet Name="FK_CarroAluguel" Association="DbModel.FK_CarroAluguel">
+            <End Role="Carros" EntitySet="Carros" />
+            <End Role="Alugueis" EntitySet="Alugueis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClienteAluguel" Association="DbModel.FK_ClienteAluguel">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Alugueis" EntitySet="Alugueis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClienteCartoes" Association="DbModel.FK_ClienteCartoes">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="DadosCartaoCredito" EntitySet="DadosCartaoCreditoes" />
+          </AssociationSet>
+          <EntitySet Name="Usuarios" EntityType="DbModel.Usuario" />
+          <EntitySet Name="Sequenciais" EntityType="DbModel.Sequencial" />
+          <AssociationSet Name="EnderecoCliente" Association="DbModel.EnderecoCliente">
+            <End Role="Endereco" EntitySet="Enderecos" />
+            <End Role="Cliente" EntitySet="Clientes" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Aluguel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="DataAluguel" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DataDevolucao" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="QuilometragemInicial" Type="Int32" Nullable="false" />
+          <Property Name="QuilometragemFinal" Type="Int32" Nullable="false" />
+          <Property Name="Carro_Id" Type="Int32" Nullable="false" />
+          <Property Name="Cliente_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Carro" Relationship="DbModel.FK_CarroAluguel" FromRole="Alugueis" ToRole="Carros" />
+          <NavigationProperty Name="Cliente" Relationship="DbModel.FK_ClienteAluguel" FromRole="Alugueis" ToRole="Clientes" />
+        </EntityType>
+        <EntityType Name="Carro">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="Placa" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Modelo" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Ano" Type="Int32" Nullable="false" />
+          <Property Name="Quilometragem" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Alugueis" Relationship="DbModel.FK_CarroAluguel" FromRole="Carros" ToRole="Alugueis" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CPF" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Endereco_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Alugueis" Relationship="DbModel.FK_ClienteAluguel" FromRole="Clientes" ToRole="Alugueis" />
+          <NavigationProperty Name="DadosCartaoCreditoes" Relationship="DbModel.FK_ClienteCartoes" FromRole="Clientes" ToRole="DadosCartaoCredito" />
+          <NavigationProperty Name="Endereco" Relationship="DbModel.EnderecoCliente" FromRole="Cliente" ToRole="Endereco" />
+        </EntityType>
+        <EntityType Name="DadosCartaoCredito">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="ClienteId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="DbModel.FK_ClienteCartoes" FromRole="DadosCartaoCredito" ToRole="Clientes" />
+        </EntityType>
+        <EntityType Name="Endereco">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="Logradouro" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Numero" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Complemento" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Fone" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Cep" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_CarroAluguel">
+          <End Role="Carros" Type="DbModel.Carro" Multiplicity="1" />
+          <End Role="Alugueis" Type="DbModel.Aluguel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carros">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Alugueis">
+              <PropertyRef Name="Carro_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClienteAluguel">
+          <End Role="Clientes" Type="DbModel.Cliente" Multiplicity="1" />
+          <End Role="Alugueis" Type="DbModel.Aluguel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Alugueis">
+              <PropertyRef Name="Cliente_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClienteCartoes">
+          <End Role="Clientes" Type="DbModel.Cliente" Multiplicity="1" />
+          <End Role="DadosCartaoCredito" Type="DbModel.DadosCartaoCredito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DadosCartaoCredito">
+              <PropertyRef Name="ClienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Type="String" Name="Nome" Nullable="false" />
+          <Property Type="String" Name="Senha" Nullable="false" />
+          <Property Type="String" Name="Sal" Nullable="false" />
+          <Property Type="String" Name="Login" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sequencial">
+          <Key>
+            <PropertyRef Name="Entidade" />
+          </Key>
+          <Property Type="String" Name="Entidade" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Type="Int32" Name="ProximoSequencial" Nullable="false" />
+        </EntityType>
+        <Association Name="EnderecoCliente">
+          <End Type="DbModel.Endereco" Role="Endereco" Multiplicity="1" />
+          <End Type="DbModel.Cliente" Role="Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Endereco">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="Endereco_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DbModelStoreContainer" CdmEntityContainer="DbEntities">
+    <EntitySetMapping Name="Alugueis">
+      <EntityTypeMapping TypeName="IsTypeOf(DbModel.Aluguel)">
+        <MappingFragment StoreEntitySet="Alugueis">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DataAluguel" ColumnName="DataAluguel" />
+          <ScalarProperty Name="DataDevolucao" ColumnName="DataDevolucao" />
+          <ScalarProperty Name="QuilometragemInicial" ColumnName="QuilometragemInicial" />
+          <ScalarProperty Name="QuilometragemFinal" ColumnName="QuilometragemFinal" />
+          <ScalarProperty Name="Carro_Id" ColumnName="Carro_Id" />
+          <ScalarProperty Name="Cliente_Id" ColumnName="Cliente_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Carros">
+      <EntityTypeMapping TypeName="IsTypeOf(DbModel.Carro)">
+        <MappingFragment StoreEntitySet="Carros">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Placa" ColumnName="Placa" />
+          <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+          <ScalarProperty Name="Ano" ColumnName="Ano" />
+          <ScalarProperty Name="Quilometragem" ColumnName="Quilometragem" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clientes">
+      <EntityTypeMapping TypeName="IsTypeOf(DbModel.Cliente)">
+        <MappingFragment StoreEntitySet="Clientes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="CPF" ColumnName="CPF" />
+          <ScalarProperty Name="Endereco_Id" ColumnName="Endereco_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DadosCartaoCreditoes">
+      <EntityTypeMapping TypeName="IsTypeOf(DbModel.DadosCartaoCredito)">
+        <MappingFragment StoreEntitySet="DadosCartaoCreditoes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Enderecos">
+      <EntityTypeMapping TypeName="IsTypeOf(DbModel.Endereco)">
+        <MappingFragment StoreEntitySet="Enderecos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Logradouro" ColumnName="Logradouro" />
+          <ScalarProperty Name="Numero" ColumnName="Numero" />
+          <ScalarProperty Name="Complemento" ColumnName="Complemento" />
+          <ScalarProperty Name="Fone" ColumnName="Fone" />
+          <ScalarProperty Name="Cep" ColumnName="Cep" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="IsTypeOf(DbModel.Usuario)">
+        <MappingFragment StoreEntitySet="Usuarios">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Senha" ColumnName="Senha" />
+          <ScalarProperty Name="Sal" ColumnName="Sal" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sequenciais">
+      <EntityTypeMapping TypeName="IsTypeOf(DbModel.Sequencial)">
+        <MappingFragment StoreEntitySet="Sequenciais">
+          <ScalarProperty Name="Entidade" ColumnName="Entidade" />
+          <ScalarProperty Name="ProximoSequencial" ColumnName="ProximoSequencial" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Modelo">
+        <EntityTypeShape EntityType="DbModel.Aluguel" Width="1.5" PointX="5.25" PointY="2.25" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbModel.Carro" Width="1.5" PointX="2.875" PointY="6.5" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbModel.Cliente" Width="1.5" PointX="3" PointY="2.5" Height="2.3648893229166656" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbModel.DadosCartaoCredito" Width="1.5" PointX="5.25" PointY="6.375" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbModel.Endereco" Width="1.5" PointX="0.75" PointY="2.5" Height="2.3648893229166652" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbModel.Usuario" Width="1.5" PointX="7.75" PointY="0.75" Height="1.9802864583333326" IsExpanded="true" />
+        <AssociationConnector Association="DbModel.FK_CarroAluguel" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.90625" PointY="6.5" />
+          <ConnectorPoint PointX="2.90625" PointY="2.34375" />
+          <ConnectorPoint PointX="5.25" PointY="2.34375" />
+        </AssociationConnector>
+        <AssociationConnector Association="DbModel.FK_ClienteAluguel" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="4.3073177083333327" />
+          <ConnectorPoint PointX="5.25" PointY="4.3073177083333327" />
+        </AssociationConnector>
+        <AssociationConnector Association="DbModel.FK_ClienteCartoes" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.46875" PointY="4.8648893229166656" />
+          <ConnectorPoint PointX="4.46875" PointY="6.40625" />
+          <ConnectorPoint PointX="5.25" PointY="6.40625" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="DbModel.Sequencial" Width="1.5" PointX="2.375" PointY="0.75" Height="1.4033821614583331" />
+        <AssociationConnector Association="DbModel.EnderecoCliente">
+          <ConnectorPoint PointX="2.25" PointY="3.5862939453125" />
+          <ConnectorPoint PointX="2.8229166666666665" PointY="3.5862939453124993" />
+          <ConnectorPoint PointX="2.9895833333333335" PointY="3.5862939453125" />
+          <ConnectorPoint PointX="3" PointY="3.5862939453125" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

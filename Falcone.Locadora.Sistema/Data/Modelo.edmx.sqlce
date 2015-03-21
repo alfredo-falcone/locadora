@@ -1,0 +1,222 @@
+
+-- --------------------------------------------------
+-- Entity Designer DDL Script for SQL Server Compact Edition
+-- --------------------------------------------------
+-- Date Created: 03/15/2015 03:53:47
+-- Generated from EDMX file: C:\Users\Alfredo\Documents\Visual Studio 2010\Projects\Falcone.Locadora\Falcone.Locadora.Sistema\Data\Modelo.edmx
+-- --------------------------------------------------
+
+
+-- --------------------------------------------------
+-- Dropping existing FOREIGN KEY constraints
+-- NOTE: if the constraint does not exist, an ignorable error will be reported.
+-- --------------------------------------------------
+
+    ALTER TABLE [Aluguels] DROP CONSTRAINT [FK_CarroAluguel];
+GO
+    ALTER TABLE [Aluguels] DROP CONSTRAINT [FK_ClienteAluguel];
+GO
+    ALTER TABLE [DadosCartaoCreditoes] DROP CONSTRAINT [FK_ClienteCartoes];
+GO
+    ALTER TABLE [Clientes] DROP CONSTRAINT [FK_ClienteEndereco];
+GO
+
+-- --------------------------------------------------
+-- Dropping existing tables
+-- NOTE: if the table does not exist, an ignorable error will be reported.
+-- --------------------------------------------------
+
+    DROP TABLE [Aluguels];
+GO
+    DROP TABLE [Carros];
+GO
+    DROP TABLE [Clientes];
+GO
+    DROP TABLE [DadosCartaoCreditoes];
+GO
+    DROP TABLE [Enderecos];
+GO
+    DROP TABLE [Usuarios];
+GO
+    DROP TABLE [Sequenciais];
+GO
+
+-- --------------------------------------------------
+-- Creating all tables
+-- --------------------------------------------------
+
+-- Creating table 'Alugueis'
+CREATE TABLE [Alugueis] (
+    [Id] int  NOT NULL,
+    [DataAluguel] datetime  NOT NULL,
+    [DataDevolucao] datetime  NOT NULL,
+    [QuilometragemInicial] int  NOT NULL,
+    [QuilometragemFinal] int  NOT NULL,
+    [Carro_Id] int  NOT NULL,
+    [Cliente_Id] int  NOT NULL
+);
+GO
+
+-- Creating table 'Carros'
+CREATE TABLE [Carros] (
+    [Id] int  NOT NULL,
+    [Placa] nvarchar(4000)  NOT NULL,
+    [Modelo] nvarchar(4000)  NOT NULL,
+    [Ano] int  NOT NULL,
+    [Quilometragem] int  NOT NULL
+);
+GO
+
+-- Creating table 'Clientes'
+CREATE TABLE [Clientes] (
+    [Id] int  NOT NULL,
+    [Nome] nvarchar(4000)  NOT NULL,
+    [CPF] nvarchar(4000)  NOT NULL,
+    [Endereco_Id] int  NOT NULL
+);
+GO
+
+-- Creating table 'DadosCartaoCreditoes'
+CREATE TABLE [DadosCartaoCreditoes] (
+    [Id] int  NOT NULL,
+    [ClienteId] int  NOT NULL
+);
+GO
+
+-- Creating table 'Enderecos'
+CREATE TABLE [Enderecos] (
+    [Id] int  NOT NULL,
+    [Logradouro] nvarchar(4000)  NOT NULL,
+    [Numero] nvarchar(4000)  NOT NULL,
+    [Complemento] nvarchar(4000)  NOT NULL,
+    [Fone] nvarchar(4000)  NOT NULL,
+    [Cep] nvarchar(4000)  NOT NULL
+);
+GO
+
+-- Creating table 'Usuarios'
+CREATE TABLE [Usuarios] (
+    [Id] int  NOT NULL,
+    [Nome] nvarchar(4000)  NOT NULL,
+    [Senha] nvarchar(4000)  NOT NULL,
+    [Sal] nvarchar(4000)  NOT NULL,
+    [Login] nvarchar(4000)  NOT NULL
+);
+GO
+
+-- Creating table 'Sequenciais'
+CREATE TABLE [Sequenciais] (
+    [Entidade] nvarchar(4000)  NOT NULL,
+    [ProximoSequencial] int  NOT NULL
+);
+GO
+
+-- --------------------------------------------------
+-- Creating all PRIMARY KEY constraints
+-- --------------------------------------------------
+
+-- Creating primary key on [Id] in table 'Alugueis'
+ALTER TABLE [Alugueis]
+ADD CONSTRAINT [PK_Alugueis]
+    PRIMARY KEY ([Id] );
+GO
+
+-- Creating primary key on [Id] in table 'Carros'
+ALTER TABLE [Carros]
+ADD CONSTRAINT [PK_Carros]
+    PRIMARY KEY ([Id] );
+GO
+
+-- Creating primary key on [Id] in table 'Clientes'
+ALTER TABLE [Clientes]
+ADD CONSTRAINT [PK_Clientes]
+    PRIMARY KEY ([Id] );
+GO
+
+-- Creating primary key on [Id] in table 'DadosCartaoCreditoes'
+ALTER TABLE [DadosCartaoCreditoes]
+ADD CONSTRAINT [PK_DadosCartaoCreditoes]
+    PRIMARY KEY ([Id] );
+GO
+
+-- Creating primary key on [Id] in table 'Enderecos'
+ALTER TABLE [Enderecos]
+ADD CONSTRAINT [PK_Enderecos]
+    PRIMARY KEY ([Id] );
+GO
+
+-- Creating primary key on [Id] in table 'Usuarios'
+ALTER TABLE [Usuarios]
+ADD CONSTRAINT [PK_Usuarios]
+    PRIMARY KEY ([Id] );
+GO
+
+-- Creating primary key on [Entidade] in table 'Sequenciais'
+ALTER TABLE [Sequenciais]
+ADD CONSTRAINT [PK_Sequenciais]
+    PRIMARY KEY ([Entidade] );
+GO
+
+-- --------------------------------------------------
+-- Creating all FOREIGN KEY constraints
+-- --------------------------------------------------
+
+-- Creating foreign key on [Carro_Id] in table 'Alugueis'
+ALTER TABLE [Alugueis]
+ADD CONSTRAINT [FK_CarroAluguel]
+    FOREIGN KEY ([Carro_Id])
+    REFERENCES [Carros]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CarroAluguel'
+CREATE INDEX [IX_FK_CarroAluguel]
+ON [Alugueis]
+    ([Carro_Id]);
+GO
+
+-- Creating foreign key on [Cliente_Id] in table 'Alugueis'
+ALTER TABLE [Alugueis]
+ADD CONSTRAINT [FK_ClienteAluguel]
+    FOREIGN KEY ([Cliente_Id])
+    REFERENCES [Clientes]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_ClienteAluguel'
+CREATE INDEX [IX_FK_ClienteAluguel]
+ON [Alugueis]
+    ([Cliente_Id]);
+GO
+
+-- Creating foreign key on [ClienteId] in table 'DadosCartaoCreditoes'
+ALTER TABLE [DadosCartaoCreditoes]
+ADD CONSTRAINT [FK_ClienteCartoes]
+    FOREIGN KEY ([ClienteId])
+    REFERENCES [Clientes]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_ClienteCartoes'
+CREATE INDEX [IX_FK_ClienteCartoes]
+ON [DadosCartaoCreditoes]
+    ([ClienteId]);
+GO
+
+-- Creating foreign key on [Endereco_Id] in table 'Clientes'
+ALTER TABLE [Clientes]
+ADD CONSTRAINT [FK_EnderecoCliente]
+    FOREIGN KEY ([Endereco_Id])
+    REFERENCES [Enderecos]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_EnderecoCliente'
+CREATE INDEX [IX_FK_EnderecoCliente]
+ON [Clientes]
+    ([Endereco_Id]);
+GO
+
+-- --------------------------------------------------
+-- Script has ended
+-- --------------------------------------------------
