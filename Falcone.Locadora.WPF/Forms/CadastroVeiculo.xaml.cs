@@ -107,7 +107,7 @@ namespace Falcone.Locadora.WPF.Forms
           }
           else if (carroSelecionado.Status == StatusCarro.Disponivel)
           {
-            DbEntities banco = new DbEntities();
+            /*DbEntities banco = new DbEntities();
             Carro carroBanco = banco.Carros.Where(c => c.Id == carroSelecionado.Id).Single();
             Aluguel aluguel = new Aluguel()
             {
@@ -121,7 +121,9 @@ namespace Falcone.Locadora.WPF.Forms
             //carroBanco.Alugueis.Add(aluguel);
             banco.Aluguels.Add(aluguel);
             banco.SaveChanges();
-            //carroSelecionado.CopiarPropriedades(carroBanco);
+            //carroSelecionado.CopiarPropriedades(carroBanco);*/
+            AluguelManutencao frmManutencao = new AluguelManutencao(carroSelecionado);
+            frmManutencao.ShowDialog();
           }
           else
             MessageBox.Show("Grave os dados antes desta operação");

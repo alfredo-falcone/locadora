@@ -1,11 +1,36 @@
 ﻿<Window x:Class="Falcone.Locadora.WPF.Forms.AluguelManutencao"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Registro de Aluguel de Veículo" Height="400" Width="554">
-    <Grid Width="522">
-    <TextBox Height="23" HorizontalAlignment="Left" Margin="12,38,0,0" Name="tbDocumento" VerticalAlignment="Top" Width="120" />
-    <TextBox Height="23" HorizontalAlignment="Right" Margin="0,38,140,0" Name="tbNome" IsEnabled="False" VerticalAlignment="Top" Width="244" />
-    <RadioButton Content="Documento" Height="16" Checked="rbDocumento_Checked" IsChecked="True" GroupName="TipoPesquisa" ToolTip="Pesquisar cliente pelo número do documento (CPF ou Passaporte)" HorizontalAlignment="Left" Margin="12,16,0,0" Name="rbDocumento" VerticalAlignment="Top" />
-    <RadioButton Content="Nome" Height="16" HorizontalAlignment="Left" Checked="rbDocumento_Checked" IsChecked="False" GroupName="TipoPesquisa" ToolTip="Pesquisar cliente pelo nome" Margin="138,16,0,0" Name="rbNome" VerticalAlignment="Top" />
+        Title="Registro de Aluguel de Veículo" Height="343" Width="587" Loaded="Window_Loaded" >
+    <Grid Width="550" Height="298" >
+    <GroupBox Header="Cliente" Height="100" HorizontalAlignment="Left" Margin="13,85,0,0" Name="groupBox1" VerticalAlignment="Top" Width="526">
+      <Grid>
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="6,28,0,0" Name="tbDocumento" VerticalAlignment="Top" Width="120" />
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="132,28,0,0" Name="cmbClientes" VerticalAlignment="Top" Width="341" IsEditable="True" />
+        <RadioButton Content="Documento" Height="16" IsChecked="True" Checked="rbDocumento_Checked" GroupName="TipoPesquisa" ToolTip="Pesquisar cliente pelo número do documento (CPF ou Passaporte)" HorizontalAlignment="Left" Margin="6,6,0,0" Name="rbDocumento" VerticalAlignment="Top" />
+        <RadioButton Content="Nome" Height="16" HorizontalAlignment="Left" Checked="rbDocumento_Checked" IsChecked="False" GroupName="TipoPesquisa" ToolTip="Pesquisar cliente pelo nome" Margin="132,6,0,0" Name="rbNome" VerticalAlignment="Top" />
+      </Grid>
+    </GroupBox>
+    <GroupBox Header="Veículo" Height="60" HorizontalAlignment="Left" Margin="12,12,0,0" Name="groupBox2" VerticalAlignment="Top" Width="526">
+      <Grid Width="523" Height="50">
+        <Label Content="Placa:" Height="28" HorizontalAlignment="Left" Name="label1" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="38,2,0,0" Name="tbPlaca" IsEnabled="False"  VerticalAlignment="Top" Width="88" />
+        <Label Content="Modelo:" Height="28" HorizontalAlignment="Left" Margin="128,0,0,0" Name="label2" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="188,2,0,0" Name="tbModelo"  IsEnabled="False" VerticalAlignment="Top" Width="133" />
+        <Label Content="Ano:" Height="28" HorizontalAlignment="Left" Margin="327,0,0,0" Name="label3" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,2,116,0" Name="tbAno" IsEnabled="False" VerticalAlignment="Top" Width="40" />
+        <Label Content="Km:" Height="28" HorizontalAlignment="Left" Margin="414,0,0,0" Name="label4" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="450,0,0,0" Name="tbQuilometragem" IsEnabled="False" VerticalAlignment="Top" Width="64" />
+      </Grid>
+    </GroupBox>
+    <Label Content="Data aluguel:" Height="28" HorizontalAlignment="Left" Margin="18,192,0,0" Name="label5" VerticalAlignment="Top" />
+    <DatePicker Height="25" HorizontalAlignment="Right" Language="pt-BR" Margin="0,192,332,0" Name="dpDataAluguel" VerticalAlignment="Top" Width="115" />
+    <Label Content="Data Devolução:" Height="28" HorizontalAlignment="Left" Margin="243,189,0,0" Name="label6" VerticalAlignment="Top" />
+    <DatePicker Height="25" HorizontalAlignment="Left" Language="pt-BR" Margin="347,189,0,0" Name="dpDataDevolucao" VerticalAlignment="Top" Width="115" />
+    <Label Content="Km Aluguel:" Height="28" HorizontalAlignment="Left" Margin="18,223,0,0" Name="label7" VerticalAlignment="Top" />
+    <TextBox Height="23" HorizontalAlignment="Right" Margin="0,223,327,0" Name="tbQuilometragemAluguel" PreviewTextInput="NumberValidationTextBox" VerticalAlignment="Top" Width="120" />
+    <Label Content="Km Devolução:" Height="28" HorizontalAlignment="Left" Margin="243,221,0,0" Name="label8" VerticalAlignment="Top" />
+    <TextBox Height="23" HorizontalAlignment="Left" Margin="345,221,0,0" PreviewTextInput="NumberValidationTextBox"  Name="tbQuilometragemDevolucao" VerticalAlignment="Top" Width="120" />
+    <Button Content="Gravar" Height="23" HorizontalAlignment="Left" Margin="19,0,0,12" Name="btGravar" Click="btGravar_Click" VerticalAlignment="Bottom" Width="75" />
   </Grid>
 </Window>
