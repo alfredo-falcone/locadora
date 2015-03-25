@@ -47,7 +47,8 @@ namespace Falcone.Locadora.WPF.Forms
       //carros.Add(new Carro() { Placa = "KKKKKKK", Ano = 2010, Modelo = "Siena", Quilometragem = 30000 });
       dgVeiculos.DataContext = carros;
       dgVeiculos.UpdateLayout();
-      temAlteracoesPendentes = false;
+      btGravar.IsEnabled = temAlteracoesPendentes = false;
+      
     }
 
     private void dgVeiculos_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -58,7 +59,7 @@ namespace Falcone.Locadora.WPF.Forms
     private void btGravar_Click(object sender, RoutedEventArgs e)
     {
       banco.SaveChanges();
-      temAlteracoesPendentes = false;
+      btGravar.IsEnabled = temAlteracoesPendentes = false;
     }
 
     private void dgVeiculos_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
@@ -85,7 +86,7 @@ namespace Falcone.Locadora.WPF.Forms
         Carro carroSelecionado = dgVeiculos.SelectedItem as Carro;
         if (carroSelecionado == null)
         {
-          MessageBox.Show("carro nulo");
+          MessageBox.Show("Ação não permitida. Acione para um veículo já gravado.");
         }
         else
         {
@@ -156,7 +157,7 @@ namespace Falcone.Locadora.WPF.Forms
 
     private void dgVeiculos_PreparingCellForEdit(object sender, DataGridPreparingCellForEditEventArgs e)
     {
-      temAlteracoesPendentes = true;
+      btGravar.IsEnabled = temAlteracoesPendentes = true;
     }
 
     private void rbTodos_Checked(object sender, RoutedEventArgs e)
