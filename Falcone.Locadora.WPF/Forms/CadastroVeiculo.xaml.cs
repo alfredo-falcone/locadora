@@ -149,6 +149,14 @@ namespace Falcone.Locadora.WPF.Forms
       temAlteracoesPendentes = true;
     }
 
+    private void rbTodos_Checked(object sender, RoutedEventArgs e)
+    {
+      if (rbTodos.IsChecked)
+      {
+      }
+      else if(rbAlugados
+    }
+
     
   }
 }
