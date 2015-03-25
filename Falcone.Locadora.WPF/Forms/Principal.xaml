@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Principal" Height="416" Width="628" Name="frmPrincipal" WindowState="Maximized">
     <Grid>
-        <Menu Height="23" HorizontalAlignment="Left" Name="menu" VerticalAlignment="Top" Width="200">
+        <Menu Height="23" HorizontalAlignment="Left" Name="menu" VerticalAlignment="Top" Width="200" Background="#FFEDE8E8" Foreground="#FF030303">
             <MenuItem Header="Cadastros" >
                 <MenuItem Header="Veículo" Click="MenuVeiculo_Click" />
                 <MenuItem Header="Cliente" />

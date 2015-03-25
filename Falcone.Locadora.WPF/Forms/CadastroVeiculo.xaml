@@ -31,6 +31,6 @@
         <Button Content="Sair" Height="23" HorizontalAlignment="Right" Margin="0,311,459,0" Name="btSair" VerticalAlignment="Top" Width="75" />
     <RadioButton Content="Todos" Height="16" IsChecked="True" GroupName="Filtros" Checked="rbTodos_Checked" HorizontalAlignment="Left" Margin="56,6,0,0" Name="rbTodos" VerticalAlignment="Top" />
     <RadioButton Content="Disponíveis" Height="16" IsChecked="False" GroupName="Filtros" Checked="rbTodos_Checked" HorizontalAlignment="Left" Margin="109,6,0,0" Name="rbDisponiveis" VerticalAlignment="Top" />
-    <RadioButton Content="Alugados" Height="16" IsChecked="False" GroupName="Filtros" Checked="rbTodos_Checked" HorizontalAlignment="Right" Margin="0,6,372,0" Name="rbAlugados" VerticalAlignment="Top" />
+    <RadioButton Content="Alugados" Height="16" IsChecked="False" GroupName="Filtros" Checked="rbTodos_Checked" HorizontalAlignment="Right" Margin="0,6,366,0" Name="rbAlugados" VerticalAlignment="Top" />
   </Grid>
 </Window>

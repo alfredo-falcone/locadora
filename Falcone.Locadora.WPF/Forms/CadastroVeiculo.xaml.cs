@@ -33,7 +33,17 @@ namespace Falcone.Locadora.WPF.Forms
     private void Load()
     {
       banco = new DbEntities();
-      var carros = banco.Carros.ToList();
+      var query = banco.Carros.ToList();
+      if (rbDisponiveis != null && rbDisponiveis.IsChecked != null && rbDisponiveis.IsChecked.Value)
+      {
+        query = query.Where(c => c.Status == StatusCarro.Disponivel).ToList();
+      }
+      else if (rbAlugados != null && rbAlugados.IsChecked != null && rbAlugados.IsChecked.Value)
+      {
+        query = query.Where(c => c.Status == StatusCarro.Alugado).ToList();
+      }
+
+      var carros = query;//.ToList();
       //carros.Add(new Carro() { Placa = "KKKKKKK", Ano = 2010, Modelo = "Siena", Quilometragem = 30000 });
       dgVeiculos.DataContext = carros;
       dgVeiculos.UpdateLayout();
@@ -151,10 +161,7 @@ namespace Falcone.Locadora.WPF.Forms
 
     private void rbTodos_Checked(object sender, RoutedEventArgs e)
     {
-      if (rbTodos.IsChecked)
-      {
-      }
-      else if(rbAlugados
+      Load();
     }
 
     
