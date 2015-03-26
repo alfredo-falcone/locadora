@@ -21,7 +21,7 @@ namespace Falcone.Locadora.WPF
     /// <summary>
     /// Interaction logic for Login.xaml
     /// </summary>
-    public partial class Login : Window
+    public partial class Login : Falcone.Locadora.WPF.Forms.Base.BaseWindow
     {
         public Login()
         {

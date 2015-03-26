@@ -92,6 +92,7 @@
     <Compile Include="Forms\AluguelManutencao.xaml.cs">
       <DependentUpon>AluguelManutencao.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Base\BaseWindow.cs" />
     <Compile Include="Forms\CadastroUsuario.xaml.cs">
       <DependentUpon>CadastroUsuario.xaml</DependentUpon>
     </Compile>
@@ -143,6 +144,12 @@
       <Project>{a1ee8342-3142-4523-811c-9764ab39ccba}</Project>
       <Name>Falcone.Locadora.Sistema</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\pictographs-car_rental_inv_t.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\car-rental-systems-icon-big.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

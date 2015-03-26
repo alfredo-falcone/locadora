@@ -1,7 +1,8 @@
-﻿<Window x:Class="Falcone.Locadora.WPF.Login"
+﻿<src:BaseWindow x:Class="Falcone.Locadora.WPF.Login"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Login" Height="300" Width="300">
+        Title="Login" Height="300" Width="300"
+        xmlns:src="clr-namespace:Falcone.Locadora.WPF.Forms.Base">
     <Grid>
         
         <Label Content="Usuário" HorizontalAlignment="Left" Margin="30,51,0,0" VerticalAlignment="Top"/>
@@ -13,4 +14,4 @@
         <Label Content="Teste" HorizontalAlignment="Left" Margin="59,27,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="cmbUsuarios" HorizontalAlignment="Left" Margin="111,27,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="-0.21,0.259"/>
     </Grid>
-</Window>
+</src:BaseWindow>

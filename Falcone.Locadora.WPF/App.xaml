@@ -1,7 +1,8 @@
 ﻿<Application x:Class="Falcone.Locadora.WPF.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             StartupUri="Forms/Login.xaml">
+             StartupUri="Forms/Login.xaml"
+             xmlns:src="clr-namespace:Falcone.Locadora.WPF.Forms.Base">
     <Application.Resources>
          
     </Application.Resources>

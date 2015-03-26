@@ -19,7 +19,7 @@ namespace Falcone.Locadora.WPF.Forms
   /// <summary>
   /// Interaction logic for CadastroVeiculo.xaml
   /// </summary>
-  public partial class CadastroVeiculo : Window
+  public partial class CadastroVeiculo : Falcone.Locadora.WPF.Forms.Base.BaseWindow
   {
     DbEntities banco;
 
@@ -93,15 +93,17 @@ namespace Falcone.Locadora.WPF.Forms
           //MessageBox.Show("Carro: " + carroSelecionado.Placa);
           if (carroSelecionado.Status == StatusCarro.Alugado)
           {
-            DbEntities banco = new DbEntities();
-            Carro carroBanco = banco.Carros.Where(c => c.Id == carroSelecionado.Id).Single();
-            Aluguel aluguel = carroBanco.AluguelPendente;
+            //DbEntities banco = new DbEntities();
+            //Carro carroBanco = banco.Carros.Where(c => c.Id == carroSelecionado.Id).Single();
+            Aluguel aluguel = carroSelecionado.AluguelPendente;
             if (aluguel != null)
             {
-              aluguel.DataDevolucao = DateTime.Now;
-              aluguel.QuilometragemFinal = aluguel.QuilometragemInicial + 1000;
-              aluguel.Carro.Quilometragem = aluguel.QuilometragemFinal;
-              banco.SaveChanges();
+              AluguelManutencao frmAluguel = new AluguelManutencao(aluguel);
+              frmAluguel.ShowDialog();
+              //aluguel.DataDevolucao = DateTime.Now;
+              //aluguel.QuilometragemFinal = aluguel.QuilometragemInicial + 1000;
+              //aluguel.Carro.Quilometragem = aluguel.QuilometragemFinal;
+              //banco.SaveChanges();
             }
             //carroSelecionado.CopiarPropriedades(carroBanco);
           }

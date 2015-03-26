@@ -1,7 +1,8 @@
-﻿<Window x:Class="Falcone.Locadora.WPF.Forms.AluguelManutencao"
+﻿<src:BaseWindow x:Class="Falcone.Locadora.WPF.Forms.AluguelManutencao"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Registro de Aluguel de Veículo" Height="343" Width="587" Loaded="Window_Loaded" >
+        Title="Registro de Aluguel de Veículo" Height="343" Width="587" Loaded="Window_Loaded" 
+        xmlns:src="clr-namespace:Falcone.Locadora.WPF.Forms.Base">
     <Grid Width="550" Height="298" >
     <GroupBox Header="Cliente" Height="100" HorizontalAlignment="Left" Margin="13,85,0,0" Name="groupBox1" VerticalAlignment="Top" Width="526">
       <Grid>
@@ -33,4 +34,4 @@
     <TextBox Height="23" HorizontalAlignment="Left" Margin="345,221,0,0" PreviewTextInput="NumberValidationTextBox"  Name="tbQuilometragemDevolucao" VerticalAlignment="Top" Width="120" />
     <Button Content="Gravar" Height="23" HorizontalAlignment="Left" Margin="19,0,0,12" Name="btGravar" Click="btGravar_Click" VerticalAlignment="Bottom" Width="75" />
   </Grid>
-</Window>
+</src:BaseWindow>

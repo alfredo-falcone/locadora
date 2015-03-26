@@ -16,7 +16,7 @@ namespace Falcone.Locadora.WPF.Forms
   /// <summary>
   /// Interaction logic for Principal.xaml
   /// </summary>
-  public partial class Principal : Window
+  public partial class Principal : Falcone.Locadora.WPF.Forms.Base.BaseWindow
   {
     public Principal()
     {

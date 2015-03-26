@@ -19,7 +19,7 @@ namespace Falcone.Locadora.WPF.Forms
     /// <summary>
     /// Interaction logic for CadastroUsuario.xaml
     /// </summary>
-    public partial class CadastroUsuario : Window
+  public partial class CadastroUsuario : Falcone.Locadora.WPF.Forms.Base.BaseWindow
     {
         public CadastroUsuario()
         {

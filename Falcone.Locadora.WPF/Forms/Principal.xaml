@@ -1,7 +1,8 @@
-﻿<Window x:Class="Falcone.Locadora.WPF.Forms.Principal"
+﻿<src:BaseWindow x:Class="Falcone.Locadora.WPF.Forms.Principal"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Principal" Height="416" Width="628" Name="frmPrincipal" WindowState="Maximized">
+        Title="Principal" Height="416" Width="628" x:Name="frmPrincipal" WindowState="Maximized"
+        xmlns:src="clr-namespace:Falcone.Locadora.WPF.Forms.Base">
     <Grid>
         <Menu Height="23" HorizontalAlignment="Left" Name="menu" VerticalAlignment="Top" Width="200" Background="#FFEDE8E8" Foreground="#FF030303">
             <MenuItem Header="Cadastros" >
@@ -12,4 +13,4 @@
             <MenuItem Header="Relatórios" />
         </Menu>
     </Grid>
-</Window>
+</src:BaseWindow>

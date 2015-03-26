@@ -21,7 +21,7 @@ namespace Falcone.Locadora.WPF.Forms
   /// <summary>
   /// Interaction logic for AluguelManutencao.xaml
   /// </summary>
-  public partial class AluguelManutencao : Window
+  public partial class AluguelManutencao : Falcone.Locadora.WPF.Forms.Base.BaseWindow
   {
     private Aluguel _aluguel = null;
     private Carro _carro = null;
@@ -98,6 +98,12 @@ namespace Falcone.Locadora.WPF.Forms
         clientes.Add(this.Aluguel.Cliente);
         cmbClientes.ItemsSource = clientes;
         cmbClientes.SelectedItem = this.Aluguel.Cliente;
+        tbDocumento.Text = this.Aluguel.Cliente.CPF;
+        rbNome.IsChecked = true;
+        rbNome.IsEnabled = false;
+        rbDocumento.IsEnabled = false;
+        tbDocumento.IsEnabled = false;
+        cmbClientes.IsEnabled = false;
       }
       tbPlaca.Text = this.Carro.Placa;
       tbModelo.Text = this.Carro.Modelo;
