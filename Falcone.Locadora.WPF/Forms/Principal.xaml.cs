@@ -21,12 +21,30 @@ namespace Falcone.Locadora.WPF.Forms
     public Principal()
     {
       InitializeComponent();
+      this.ShowInTaskbar = true;
+      
     }
 
     private void MenuVeiculo_Click(object sender, RoutedEventArgs e)
     {
       CadastroVeiculo cadastro = new CadastroVeiculo();
-      cadastro.ShowDialog();
+      cadastro.ShowDialog(this);
     }
+
+    /*private void frmPrincipal_Activated(object sender, EventArgs e)
+    {
+
+      foreach (Window janela in Application.Current.Windows)
+      {
+        if (janela.IsFocused)
+          janela.BringIntoView();
+      }
+    }
+
+    private void frmPrincipal_RequestBringIntoView(object sender, RequestBringIntoViewEventArgs e)
+    {
+      
+    }*/
+
   }
 }

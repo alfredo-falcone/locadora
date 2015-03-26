@@ -6,7 +6,7 @@
     <Grid Width="550" Height="298" >
     <GroupBox Header="Cliente" Height="100" HorizontalAlignment="Left" Margin="13,85,0,0" Name="groupBox1" VerticalAlignment="Top" Width="526">
       <Grid>
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="6,28,0,0" Name="tbDocumento" VerticalAlignment="Top" Width="120" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="6,28,0,0" TextChanged="tbDocumento_TextChanged"  Name="tbDocumento" VerticalAlignment="Top" Width="120" />
         <ComboBox Height="23" HorizontalAlignment="Left" Margin="132,28,0,0" Name="cmbClientes" VerticalAlignment="Top" Width="341" IsEditable="True" />
         <RadioButton Content="Documento" Height="16" IsChecked="True" Checked="rbDocumento_Checked" GroupName="TipoPesquisa" ToolTip="Pesquisar cliente pelo número do documento (CPF ou Passaporte)" HorizontalAlignment="Left" Margin="6,6,0,0" Name="rbDocumento" VerticalAlignment="Top" />
         <RadioButton Content="Nome" Height="16" HorizontalAlignment="Left" Checked="rbDocumento_Checked" IsChecked="False" GroupName="TipoPesquisa" ToolTip="Pesquisar cliente pelo nome" Margin="132,6,0,0" Name="rbNome" VerticalAlignment="Top" />

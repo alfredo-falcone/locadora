@@ -28,12 +28,11 @@ namespace Falcone.Locadora.WPF.Forms
 
         private void btGravar_Click(object sender, RoutedEventArgs e)
         {
-            DbEntities banco = new DbEntities();
             var usuario = new Usuario() { Login = tbLogin.Text, Nome = tbNome.Text, Sal = Guid.NewGuid().ToString(), Senha = tbSenha.Password };
             string senha = Falcone.Locadora.Sistema.Src.Util.GerarMD5(usuario.Sal + usuario.Senha);
             usuario.Senha = senha;
-            banco.Usuarios.Add(usuario);
-            banco.SaveChanges();
+            this.Banco.Usuarios.Add(usuario);
+            this.Banco.SaveChanges();
             this.Close();
         }
     }

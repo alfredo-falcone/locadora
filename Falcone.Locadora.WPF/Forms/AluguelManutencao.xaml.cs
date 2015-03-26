@@ -26,22 +26,27 @@ namespace Falcone.Locadora.WPF.Forms
     private Aluguel _aluguel = null;
     private Carro _carro = null;
     private bool isNovoAluguel = false;
-    public AluguelManutencao(Aluguel aluguel)
+    
+    public AluguelManutencao()
     {
       InitializeComponent();
-      this.Aluguel = aluguel;
-      this.dpDataAluguel.IsEnabled = false;
       this.tbQuilometragemAluguel.IsEnabled = false;
+    }
+
+    public AluguelManutencao(Aluguel aluguel) : this()
+    {
+      this.Aluguel = this.Banco.Aluguels.Where(a => a.Id == aluguel.Id).Single() ;
+      this.dpDataAluguel.IsEnabled = false;
       this.dpDataDevolucao.SelectedDate = DateTime.Now;
     }
 
-    public AluguelManutencao(Carro carro)
+    public AluguelManutencao(Carro carro) : this()
     {
-      InitializeComponent();
-      this.Carro = carro;
+      this.Carro = this.Banco.Carros.Where(c => c.Id == carro.Id).Single();
       this.dpDataDevolucao.IsEnabled = false;
       this.tbQuilometragemDevolucao.IsEnabled = false;
     }
+
     private Carro Carro
     {
       get
@@ -87,9 +92,8 @@ namespace Falcone.Locadora.WPF.Forms
       cmbClientes.SelectedValuePath = "CPF";
       if (this.Aluguel.Cliente == null)
       {
-        DbEntities banco = new DbEntities();
 
-        var clientes = banco.Clientes.ToList();
+        var clientes = this.Banco.Clientes.ToList();
         cmbClientes.ItemsSource = clientes;
       }
       else
@@ -129,8 +133,17 @@ namespace Falcone.Locadora.WPF.Forms
         sbErros.AppendLine("=> Data de aluguel deve ser preenchida");
       if(string.IsNullOrEmpty(tbQuilometragemAluguel.Text))
         sbErros.AppendLine("=> Quilometragem de aluguel deve ser preenchida");
-      if(cmbClientes.SelectedItem == null)
-        sbErros.AppendLine("=> Cliente deve ser preenchido");
+      if (cmbClientes.SelectedItem == null)
+      {
+        if (string.IsNullOrEmpty(tbDocumento.Text))
+        {
+          sbErros.AppendLine("=> Cliente deve ser preenchido");
+        }
+        else
+        {
+          sbErros.AppendLine("=> Cliente com documento informado não foi encontrado. Cadastre o cliente e tente novamente.");
+        }
+      }
 
     
       if (!this.isNovoAluguel)
@@ -141,6 +154,10 @@ namespace Falcone.Locadora.WPF.Forms
           sbErros.AppendLine("=> Quilometragem de devolução deve ser preenchida");
       
       }
+      if (!this.isNovoAluguel && this.Aluguel.QuilometragemFinal < this.Aluguel.QuilometragemInicial)
+        sbErros.AppendLine("Quilometragem final deve ser superior à inicial");
+
+      
       if (sbErros.Length > 0)
       {
         throw new ArgumentException("Erro validando dados" + Environment.NewLine + sbErros.ToString());
@@ -156,8 +173,10 @@ namespace Falcone.Locadora.WPF.Forms
       if (dpDataDevolucao.SelectedDate != null)
         this.Aluguel.DataDevolucao = dpDataDevolucao.SelectedDate.Value;
       if (!string.IsNullOrEmpty(this.tbQuilometragemDevolucao.Text))
+      {
         this.Aluguel.QuilometragemFinal = int.Parse(tbQuilometragemDevolucao.Text);
-
+        this.Carro.Quilometragem = this.Aluguel.QuilometragemFinal;
+      }
     }
 
     private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
@@ -172,23 +191,28 @@ namespace Falcone.Locadora.WPF.Forms
       {
         ValidarTela();
         AtualizarAluguelTela();
-        DbEntities banco = new DbEntities();
         if (this.isNovoAluguel)
         {
-          banco.Aluguels.Add(this.Aluguel);
+          this.Banco.Aluguels.Add(this.Aluguel);
         }
-        else
-        {
-          Aluguel aluguelBanco = banco.Aluguels.Where(a => a.Id == this.Aluguel.Id).Single();
-          aluguelBanco.CopiarPropriedades(this.Aluguel);
-        }
-        banco.SaveChanges();
+        //else
+        //{
+          //Aluguel aluguelBanco = banco.Aluguels.Where(a => a.Id == this.Aluguel.Id).Single();
+          //aluguelBanco.CopiarPropriedades(this.Aluguel);
+        //}
+        this.Banco.SaveChanges();
         this.Close();
       }
       catch (Exception ex)
       {
         MessageBox.Show(ex.Message, "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
       }
+    }
+
+    private void tbDocumento_TextChanged(object sender, TextChangedEventArgs e)
+    {
+      Cliente clienteDocumento = cmbClientes.Items.Cast<Cliente>().Where(c => c.CPF.ToUpper() == tbDocumento.Text.ToUpper()).SingleOrDefault();
+      cmbClientes.SelectedItem = clienteDocumento;
     }
 
     

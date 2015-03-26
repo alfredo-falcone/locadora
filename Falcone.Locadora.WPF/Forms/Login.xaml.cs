@@ -27,18 +27,17 @@ namespace Falcone.Locadora.WPF
         {
             InitializeComponent();
             Load();
-            tbLogin.Focus();
-            
+            //tbLogin.Focus();
+            this.ShowInTaskbar = true;
         }
 
         private void Load()
         {
-            DbEntities banco = new DbEntities();
 
-            var usuarios = banco.Usuarios.ToList();
-            cmbUsuarios.DisplayMemberPath = "Nome";
-            cmbUsuarios.SelectedValuePath = "Login";
-            cmbUsuarios.ItemsSource = usuarios;
+          var usuarios = this.Banco.Usuarios.ToList();
+            //cmbUsuarios.DisplayMemberPath = "Nome";
+            //cmbUsuarios.SelectedValuePath = "Login";
+            //cmbUsuarios.ItemsSource = usuarios;
             //var usuario = new Usuario();
             //string nometipo = usuario.GetType().Name;
             /*var sequenciais = banco.Sequenciais.Where(s => s.Entidade == nometipo).ToList();
@@ -56,7 +55,7 @@ namespace Falcone.Locadora.WPF
         private void btCadastro_Click(object sender, RoutedEventArgs e)
         {
             CadastroUsuario cadastro = new CadastroUsuario();
-            cadastro.ShowDialog();
+            cadastro.ShowDialog(this);
             Load();
         }
 

@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Falcone.Locadora.Sistema.Data;
 
 namespace Falcone.Locadora.WPF.Forms.Base
 {
@@ -18,6 +19,8 @@ namespace Falcone.Locadora.WPF.Forms.Base
   /// </summary>
   public partial class BaseWindow : Window
   {
+    DbEntities banco = null;
+    
     public BaseWindow()
     {
       /*IconBitmapDecoder ibd = new IconBitmapDecoder(new Uri(@"pack://application:,,/Images/car-rental-systems-icon-big.png", UriKind.RelativeOrAbsolute),
@@ -29,6 +32,29 @@ namespace Falcone.Locadora.WPF.Forms.Base
        */
       var uriSource = new Uri(@"pack://application:,,/Images/pictographs-car_rental_inv_t.png", UriKind.RelativeOrAbsolute);
       this.Icon = new BitmapImage(uriSource);
+      this.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+      this.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+      this.ShowInTaskbar = false;
+
+      this.Loaded += (sender, e) => MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+    }
+
+    protected DbEntities Banco
+    {
+      get
+      {
+        if (banco == null)
+        {
+          banco = new DbEntities();
+        }
+        return banco;
+      }
+    }
+
+    public bool? ShowDialog(Window owner)
+    {
+      this.Owner = owner;
+      return this.ShowDialog();
     }
   }
 }

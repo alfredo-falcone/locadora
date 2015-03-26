@@ -21,8 +21,7 @@ namespace Falcone.Locadora.WPF.Forms
   /// </summary>
   public partial class CadastroVeiculo : Falcone.Locadora.WPF.Forms.Base.BaseWindow
   {
-    DbEntities banco;
-
+    
     private bool temAlteracoesPendentes = false;
     public CadastroVeiculo()
     {
@@ -32,8 +31,7 @@ namespace Falcone.Locadora.WPF.Forms
 
     private void Load()
     {
-      banco = new DbEntities();
-      var query = banco.Carros.ToList();
+      var query = this.Banco.Carros.ToList();
       if (rbDisponiveis != null && rbDisponiveis.IsChecked != null && rbDisponiveis.IsChecked.Value)
       {
         query = query.Where(c => c.Status == StatusCarro.Disponivel).ToList();
@@ -58,16 +56,16 @@ namespace Falcone.Locadora.WPF.Forms
 
     private void btGravar_Click(object sender, RoutedEventArgs e)
     {
-      banco.SaveChanges();
+      this.Banco.SaveChanges();
       btGravar.IsEnabled = temAlteracoesPendentes = false;
     }
 
     private void dgVeiculos_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
     {
       var veiculoEditado = e.Row.DataContext as Carro;
-      var carroBanco = banco.Carros.Where(c => c.Id == veiculoEditado.Id).SingleOrDefault();
+      var carroBanco = this.Banco.Carros.Where(c => c.Id == veiculoEditado.Id).SingleOrDefault();
       if (carroBanco == null)
-        banco.Carros.Add(veiculoEditado);
+        this.Banco.Carros.Add(veiculoEditado);
       else
       {
         carroBanco.CopiarPropriedades(veiculoEditado);
@@ -99,7 +97,7 @@ namespace Falcone.Locadora.WPF.Forms
             if (aluguel != null)
             {
               AluguelManutencao frmAluguel = new AluguelManutencao(aluguel);
-              frmAluguel.ShowDialog();
+              frmAluguel.ShowDialog(this);
               //aluguel.DataDevolucao = DateTime.Now;
               //aluguel.QuilometragemFinal = aluguel.QuilometragemInicial + 1000;
               //aluguel.Carro.Quilometragem = aluguel.QuilometragemFinal;
@@ -125,7 +123,7 @@ namespace Falcone.Locadora.WPF.Forms
             banco.SaveChanges();
             //carroSelecionado.CopiarPropriedades(carroBanco);*/
             AluguelManutencao frmManutencao = new AluguelManutencao(carroSelecionado);
-            frmManutencao.ShowDialog();
+            frmManutencao.ShowDialog(this);
           }
           else
             MessageBox.Show("Grave os dados antes desta operação");
