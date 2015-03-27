@@ -33,9 +33,9 @@ namespace Falcone.Locadora.Sistema.Data
       {
         string retorno = null;
         if(this.Status == StatusCarro.Alugado)
-          retorno = "Devolver";
+          retorno = "Registrar Devolução";
         else if(this.Status == StatusCarro.Disponivel)
-          retorno = "Alugar";
+          retorno = "Alugar Carro";
         return retorno;
       }
     }

@@ -12,5 +12,6 @@
             </MenuItem>
             <MenuItem Header="Relatórios" />
         </Menu>
+        <Label Content="Label" Height="130" HorizontalAlignment="Left" Margin="141,197,0,0" Name="lbCotacao" VerticalAlignment="Top" Width="285" />
     </Grid>
 </src:BaseWindow>

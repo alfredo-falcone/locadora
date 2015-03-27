@@ -65,6 +65,7 @@ namespace Falcone.Locadora.WPF
           try
           {
             Util.ValidarLogin(tbLogin.Text, tbSenha.Password);
+            Aplicacao.Criar(this.Banco.Usuarios.Where(u => u.Login == tbLogin.Text).Single());
             //MessageBox.Show("Senha ok");
             Principal frmPrincipal = new Principal();
             frmPrincipal.Show();

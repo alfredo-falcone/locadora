@@ -51,6 +51,11 @@ namespace Falcone.Locadora.WPF.Forms.Base
       }
     }
 
+    protected void ResetBanco()
+    {
+      banco = null;
+    }
+
     public bool? ShowDialog(Window owner)
     {
       this.Owner = owner;

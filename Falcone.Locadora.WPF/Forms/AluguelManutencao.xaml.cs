@@ -153,10 +153,11 @@ namespace Falcone.Locadora.WPF.Forms
         if (string.IsNullOrEmpty(tbQuilometragemDevolucao.Text))
           sbErros.AppendLine("=> Quilometragem de devolução deve ser preenchida");
       
-      }
-      if (!this.isNovoAluguel && this.Aluguel.QuilometragemFinal < this.Aluguel.QuilometragemInicial)
+        if (int.Parse(this.tbQuilometragemAluguel.Text) > int.Parse(this.tbQuilometragemDevolucao.Text))
         sbErros.AppendLine("Quilometragem final deve ser superior à inicial");
 
+      }
+      
       
       if (sbErros.Length > 0)
       {
@@ -191,15 +192,22 @@ namespace Falcone.Locadora.WPF.Forms
       {
         ValidarTela();
         AtualizarAluguelTela();
+        
         if (this.isNovoAluguel)
         {
           this.Banco.Aluguels.Add(this.Aluguel);
         }
         //else
-        //{
-          //Aluguel aluguelBanco = banco.Aluguels.Where(a => a.Id == this.Aluguel.Id).Single();
-          //aluguelBanco.CopiarPropriedades(this.Aluguel);
-        //}
+       //{
+        //  Aluguel aluguelBanco = this.Banco.Aluguels.Where(a => a.Id == this.Aluguel.Id).Single();
+        //  aluguelBanco.CopiarPropriedades(this.Aluguel);
+       // }
+        LogAplicacao.RegistrarAtividade(
+          string.Format("Operação: {0}; Placa: {1}; Quilometragem inicial:{2}{3}",
+          ((this.isNovoAluguel) ? "Aluguel" : "Devolução"),
+          this.Carro.Placa, this.Aluguel.QuilometragemInicial,
+          ((this.isNovoAluguel) ? string.Empty : string.Format("; Quilometragem final: {0}", this.Aluguel.QuilometragemFinal))));
+
         this.Banco.SaveChanges();
         this.Close();
       }

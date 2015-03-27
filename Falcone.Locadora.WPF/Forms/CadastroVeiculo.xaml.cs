@@ -31,6 +31,7 @@ namespace Falcone.Locadora.WPF.Forms
 
     private void Load()
     {
+      this.ResetBanco();
       var query = this.Banco.Carros.ToList();
       if (rbDisponiveis != null && rbDisponiveis.IsChecked != null && rbDisponiveis.IsChecked.Value)
       {
@@ -42,9 +43,9 @@ namespace Falcone.Locadora.WPF.Forms
       }
 
       var carros = query;//.ToList();
-      //carros.Add(new Carro() { Placa = "KKKKKKK", Ano = 2010, Modelo = "Siena", Quilometragem = 30000 });
+     
       dgVeiculos.DataContext = carros;
-      dgVeiculos.UpdateLayout();
+      //dgVeiculos.UpdateLayout();
       btGravar.IsEnabled = temAlteracoesPendentes = false;
       
     }
@@ -69,9 +70,6 @@ namespace Falcone.Locadora.WPF.Forms
       else
       {
         carroBanco.CopiarPropriedades(veiculoEditado);
-        /*carroBanco.Ano = veiculoEditado.Ano;
-        carroBanco.Modelo = veiculoEditado.Modelo;
-        carroBanco.Quilometragem = veiculoEditado.Quilometragem;*/
       }
       
     }
@@ -88,46 +86,22 @@ namespace Falcone.Locadora.WPF.Forms
         }
         else
         {
-          //MessageBox.Show("Carro: " + carroSelecionado.Placa);
           if (carroSelecionado.Status == StatusCarro.Alugado)
           {
-            //DbEntities banco = new DbEntities();
-            //Carro carroBanco = banco.Carros.Where(c => c.Id == carroSelecionado.Id).Single();
             Aluguel aluguel = carroSelecionado.AluguelPendente;
             if (aluguel != null)
             {
               AluguelManutencao frmAluguel = new AluguelManutencao(aluguel);
               frmAluguel.ShowDialog(this);
-              //aluguel.DataDevolucao = DateTime.Now;
-              //aluguel.QuilometragemFinal = aluguel.QuilometragemInicial + 1000;
-              //aluguel.Carro.Quilometragem = aluguel.QuilometragemFinal;
-              //banco.SaveChanges();
             }
-            //carroSelecionado.CopiarPropriedades(carroBanco);
           }
           else if (carroSelecionado.Status == StatusCarro.Disponivel)
-          {
-            /*DbEntities banco = new DbEntities();
-            Carro carroBanco = banco.Carros.Where(c => c.Id == carroSelecionado.Id).Single();
-            Aluguel aluguel = new Aluguel()
-            {
-              Carro = carroBanco,
-              Cliente_Id = -1,
-              DataAluguel = DateTime.Now,
-              QuilometragemInicial = carroBanco.Quilometragem,
-              DataDevolucao = default(DateTime),
-              QuilometragemFinal = default(int)
-            };
-            //carroBanco.Alugueis.Add(aluguel);
-            banco.Aluguels.Add(aluguel);
-            banco.SaveChanges();
-            //carroSelecionado.CopiarPropriedades(carroBanco);*/
+          { 
             AluguelManutencao frmManutencao = new AluguelManutencao(carroSelecionado);
             frmManutencao.ShowDialog(this);
           }
           else
             MessageBox.Show("Grave os dados antes desta operação");
-          //dgVeiculos.UpdateLayout();
           Load();
         }
       }
@@ -140,15 +114,6 @@ namespace Falcone.Locadora.WPF.Forms
     private void dgVeiculos_LoadingRow(object sender, DataGridRowEventArgs e)
     {
       e.Row.Loaded += new RoutedEventHandler(Row_Loaded);
-
-      
-      /*Button botao = dgVeiculos;
-      Carro carroAtual = e.Row.DataContext as Carro;
-      if (carroAtual != null && botao != null && carroAtual.Status == StatusCarro.NaoCadastrado)
-      {
-        botao.Visibility = System.Windows.Visibility.Hidden;
-      }*/
-      
 
     }
 

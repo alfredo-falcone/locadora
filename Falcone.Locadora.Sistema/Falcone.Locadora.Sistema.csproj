@@ -133,10 +133,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Src\Aplicacao.cs" />
     <Compile Include="Src\Carro.cs" />
     <Compile Include="Src\Constantes.cs" />
     <Compile Include="Src\DbEntities.cs" />
     <Compile Include="Src\Extension\ExtensionMethods.cs" />
+    <Compile Include="Src\LogAplicacao.cs" />
     <Compile Include="Src\StatusCarro.cs" />
     <Compile Include="Src\UsuarioOuSenhaInvalidosException.cs" />
     <Compile Include="Src\Util.cs" />
