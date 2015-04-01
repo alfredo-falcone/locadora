@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server Compact Edition
 -- --------------------------------------------------
--- Date Created: 03/15/2015 03:53:47
--- Generated from EDMX file: C:\Users\Alfredo\Documents\Visual Studio 2010\Projects\Falcone.Locadora\Falcone.Locadora.Sistema\Data\Modelo.edmx
+-- Date Created: 03/30/2015 15:35:07
+-- Generated from EDMX file: C:\Usuarios\alfredo\Visual Studio 2010\Projects\Locadora\locadora\Falcone.Locadora.Sistema\Data\Modelo.edmx
 -- --------------------------------------------------
 
 
@@ -12,34 +12,12 @@
 -- NOTE: if the constraint does not exist, an ignorable error will be reported.
 -- --------------------------------------------------
 
-    ALTER TABLE [Aluguels] DROP CONSTRAINT [FK_CarroAluguel];
-GO
-    ALTER TABLE [Aluguels] DROP CONSTRAINT [FK_ClienteAluguel];
-GO
-    ALTER TABLE [DadosCartaoCreditoes] DROP CONSTRAINT [FK_ClienteCartoes];
-GO
-    ALTER TABLE [Clientes] DROP CONSTRAINT [FK_ClienteEndereco];
-GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- NOTE: if the table does not exist, an ignorable error will be reported.
 -- --------------------------------------------------
 
-    DROP TABLE [Aluguels];
-GO
-    DROP TABLE [Carros];
-GO
-    DROP TABLE [Clientes];
-GO
-    DROP TABLE [DadosCartaoCreditoes];
-GO
-    DROP TABLE [Enderecos];
-GO
-    DROP TABLE [Usuarios];
-GO
-    DROP TABLE [Sequenciais];
-GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -79,7 +57,11 @@ GO
 -- Creating table 'DadosCartaoCreditoes'
 CREATE TABLE [DadosCartaoCreditoes] (
     [Id] int  NOT NULL,
-    [ClienteId] int  NOT NULL
+    [ClienteId] int  NOT NULL,
+    [NumeroCartao] nvarchar(4000)  NOT NULL,
+    [NomeCliente] nvarchar(4000)  NOT NULL,
+    [Validade] nvarchar(4000)  NOT NULL,
+    [CodigoSeguranca] nvarchar(4000)  NOT NULL
 );
 GO
 

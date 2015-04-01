@@ -25,7 +25,7 @@ namespace Falcone.Locadora.Sistema.Data
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<Aluguel> Aluguels { get; set; }
+        public DbSet<Aluguel> Alugueis { get; set; }
         public DbSet<Carro> Carros { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<DadosCartaoCredito> DadosCartaoCreditoes { get; set; }

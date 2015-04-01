@@ -16,6 +16,10 @@ namespace Falcone.Locadora.Sistema.Data
     {
         public int Id { get; set; }
         public int ClienteId { get; set; }
+        public string NumeroCartao { get; set; }
+        public string NomeCliente { get; set; }
+        public string Validade { get; set; }
+        public string CodigoSeguranca { get; set; }
     
         public virtual Cliente Cliente { get; set; }
     }

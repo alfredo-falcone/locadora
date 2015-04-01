@@ -136,6 +136,7 @@
     <Compile Include="Src\Aplicacao.cs" />
     <Compile Include="Src\Carro.cs" />
     <Compile Include="Src\Constantes.cs" />
+    <Compile Include="Src\DadosCartaoCredito.cs" />
     <Compile Include="Src\DbEntities.cs" />
     <Compile Include="Src\Extension\ExtensionMethods.cs" />
     <Compile Include="Src\LogAplicacao.cs" />

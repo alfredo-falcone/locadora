@@ -5,6 +5,7 @@ using System.Text;
 using Falcone.Locadora.Sistema.Data;
 using System.Security.Cryptography;
 using Falcone.Locadora.Sistema.Src;
+using System.IO;
 
 namespace Falcone.Locadora.Sistema.Src
 {
@@ -17,20 +18,19 @@ namespace Falcone.Locadora.Sistema.Src
       Sequencial ultimo = contextoSequencial.Sequenciais.Where(s => s.Entidade == nomeTipo).SingleOrDefault();
       if (ultimo == null)
       {
-        ultimo = new Sequencial() { Entidade = entityEntry.Entity.GetType().Name, ProximoSequencial = 1 };
+        ultimo = new Sequencial() { Entidade = entityEntry.Entity.GetType().Name, ProximoSequencial = 0 };
         contextoSequencial.Sequenciais.Add(ultimo);
       }
 
       ultimo.ProximoSequencial += 1;
       entityEntry.CurrentValues["Id"] = ultimo.ProximoSequencial;
-      entityEntry.Entity.GetType().GetProperty("Id").SetValue(entityEntry.Entity, ultimo.ProximoSequencial, null);
+      //entityEntry.Entity.GetType().GetProperty("Id").SetValue(entityEntry.Entity, ultimo.ProximoSequencial, null);
       contextoSequencial.SaveChanges();
     }
 
 
     public static void PreencherDateTimeMinValue(System.Data.Entity.Infrastructure.DbEntityEntry entityEntry)
     {
-      DbEntities contextoSequencial = new DbEntities();
       Type tipo = entityEntry.Entity.GetType();
       foreach (var property in tipo.GetProperties())
       {
@@ -103,6 +103,74 @@ namespace Falcone.Locadora.Sistema.Src
         throw new UsuarioOuSenhaInvalidosException();
       }
 
+
+    }
+
+    public static string Criptografar(string textoCriptografar)
+    {
+      byte[] bytesTexto = Encoding.Unicode.GetBytes(textoCriptografar);
+
+      if (textoCriptografar == null || textoCriptografar.Length <= 0)
+        throw new ArgumentNullException("textoCriptografar");
+
+      string textoCriptografado = null;
+      
+      using (Aes aesAlg = Aes.Create())
+      {
+        Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(Constantes.Criptografia.Chave, Constantes.Criptografia.Salt);
+        aesAlg.Key = pdb.GetBytes(16);
+        aesAlg.IV = pdb.GetBytes(16);
+
+        ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
+
+        using (MemoryStream msEncrypt = new MemoryStream())
+        {
+          using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
+          {
+            using (StreamWriter swEncrypt = new StreamWriter(csEncrypt))
+            {
+              swEncrypt.Write(textoCriptografar);
+            }
+            textoCriptografado = Convert.ToBase64String(msEncrypt.ToArray());
+          }
+        }
+      }
+
+      return textoCriptografado;
+
+    }
+
+
+    public static string Descriptografar(string textoCriptografado)
+    {
+      
+      if (string.IsNullOrEmpty(textoCriptografado))
+        throw new ArgumentNullException("textoCriptografado");
+
+      string textoDescriptografado = null;
+      using (Aes aesAlg = Aes.Create())
+      {
+        Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(Constantes.Criptografia.Chave, Constantes.Criptografia.Salt);
+        aesAlg.Key = pdb.GetBytes(16);
+        aesAlg.IV = pdb.GetBytes(16);
+        
+        ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
+
+        using (MemoryStream msDecrypt = new MemoryStream(Convert.FromBase64String(textoCriptografado)))
+        {
+          using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
+          {
+            using (StreamReader srDecrypt = new StreamReader(csDecrypt))
+            {
+
+              textoDescriptografado = srDecrypt.ReadToEnd();
+            }
+          }
+        }
+
+      }
+
+      return textoDescriptografado;
 
     }
 

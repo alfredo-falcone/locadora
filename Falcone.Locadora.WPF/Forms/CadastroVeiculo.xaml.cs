@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using Falcone.Locadora.Sistema.Data;
 using Falcone.Locadora.Sistema.Src.Extension;
 using System.Windows.Controls.Primitives;
+using Falcone.Locadora.Sistema.Src;
 
 namespace Falcone.Locadora.WPF.Forms
 {
@@ -47,6 +48,16 @@ namespace Falcone.Locadora.WPF.Forms
       dgVeiculos.DataContext = carros;
       //dgVeiculos.UpdateLayout();
       btGravar.IsEnabled = temAlteracoesPendentes = false;
+      string textoOriginal = "tEsTeFalconeção";
+      string textoCriptografado = Util.Criptografar(textoOriginal);
+      string textoDescriptografado = Util.Descriptografar(textoCriptografado);
+      if (textoDescriptografado != textoOriginal)
+      {
+        throw new ArgumentException("Caracteres inapropriados na senha");
+      }
+      //DadosCartaoCredito cartaoIncluir = new DadosCartaoCredito(){ ClienteId=-1, NumeroCartao
+      // DadosCartaoCredito cartao = Banco.DadosCartaoCreditoes.Where(c => c.ClienteId == -1).FirstOrDefault();
+
       
     }
 

@@ -74,6 +74,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Forms\CadastroCliente.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Forms\ClienteManutencao.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forms\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -93,12 +101,19 @@
     <Compile Include="Forms\AluguelManutencao.xaml.cs">
       <DependentUpon>AluguelManutencao.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Base\BaseTextBox.cs" />
     <Compile Include="Forms\Base\BaseWindow.cs" />
     <Compile Include="Forms\CadastroUsuario.xaml.cs">
       <DependentUpon>CadastroUsuario.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\CadastroVeiculo.xaml.cs">
       <DependentUpon>CadastroVeiculo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CadastroCliente.xaml.cs">
+      <DependentUpon>CadastroCliente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ClienteManutencao.xaml.cs">
+      <DependentUpon>ClienteManutencao.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>

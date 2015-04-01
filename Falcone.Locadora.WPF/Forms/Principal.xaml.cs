@@ -38,26 +38,12 @@ namespace Falcone.Locadora.WPF.Forms
       timerCotacaoMoeda.Start();
     }
 
-    private void MenuVeiculo_Click(object sender, RoutedEventArgs e)
-    {
-      CadastroVeiculo cadastro = new CadastroVeiculo();
-      cadastro.ShowDialog(this);
-    }
+    
 
     private void timerCotacaoMoeda_Tick(object sender, EventArgs e)
     {
       timerCotacaoMoeda.Stop();
-      /*Task tarefa = new Task(() => 
-      {
-        WebRequest requisicao = WebRequest.Create("http://developers.agenciaideias.com.br/cotacoes/json");
-        WebResponse resposta = requisicao.GetResponse();
-        byte[] dados = new byte[resposta.GetResponseStream().Length];
-
-        resposta.GetResponseStream().Read(dados, 0, (int)resposta.GetResponseStream().Length);
-        string retorno = Falcone.Locadora.Sistema.Src.Util.ConverterByteArrayEmString(dados);
-        lbCotacao.Content = retorno;
-      });
-      tarefa.Start();*/
+     
       if (!timerInicializado)
       {
         timerCotacaoMoeda.Interval = new TimeSpan(0, 0, 300);
@@ -77,7 +63,7 @@ namespace Falcone.Locadora.WPF.Forms
     {
       HttpWebRequest requisicao = WebRequest.Create("http://developers.agenciaideias.com.br/cotacoes/xml") as HttpWebRequest;
       HttpWebResponse resposta = requisicao.GetResponse() as HttpWebResponse;
-      //byte[] dados = new byte[200];
+      
       StringBuilder sbCotacoes = new StringBuilder();
       sbCotacoes.AppendLine("Cotações:");
       using (StreamReader reader = new StreamReader(resposta.GetResponseStream()))
@@ -89,16 +75,22 @@ namespace Falcone.Locadora.WPF.Forms
         sbCotacoes.AppendFormat("Dolar: {0}{1}", valorDolar, Environment.NewLine);
         sbCotacoes.AppendFormat("Euro: {0}{1}", valorEuro, Environment.NewLine);
         sbCotacoes.AppendFormat("Data consulta: {0}{1}", DateTime.Now, Environment.NewLine);
-
       }
 
-
-
-      //string retorno = Falcone.Locadora.Sistema.Src.Util.ConverterByteArrayEmString(dados);
-      //string retorno = System.Text.Encoding.UTF8.GetString(dados);
       lbCotacao.Content = sbCotacoes.ToString();
     }
 
+    private void MenuCliente_Click(object sender, RoutedEventArgs e)
+    {
+      CadastroCliente cadastro = new CadastroCliente();
+      cadastro.ShowDialog(this);
+    }
+
+    private void MenuVeiculo_Click(object sender, RoutedEventArgs e)
+    {
+      CadastroVeiculo cadastro = new CadastroVeiculo();
+      cadastro.ShowDialog(this);
+    }
 
     /*private void frmPrincipal_Activated(object sender, EventArgs e)
     {

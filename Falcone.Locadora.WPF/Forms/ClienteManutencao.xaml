@@ -1,0 +1,27 @@
+﻿<src:BaseWindow x:Class="Falcone.Locadora.WPF.Forms.ClienteManutencao"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:src="clr-namespace:Falcone.Locadora.WPF.Forms.Base"
+        Title="Manutenção de cliente" Height="367" Width="482">
+    <Grid>
+    <Label Content="Nome:" Height="28" HorizontalAlignment="Left" Margin="12,10,0,0" Name="label1" VerticalAlignment="Top" />
+    <TextBox Height="23" HorizontalAlignment="Left" Margin="63,10,0,0" Name="tbNome" VerticalAlignment="Top" Width="205" />
+    <Label Content="Doc.:" Height="28" HorizontalAlignment="Left" Margin="274,10,0,0" Name="label2" VerticalAlignment="Top" />
+    <TextBox Height="23" HorizontalAlignment="Left" Margin="313,10,0,0" Name="tbCPF" VerticalAlignment="Top" Width="120" />
+    <GroupBox Header="Endereço" Height="170" HorizontalAlignment="Left" Margin="12,44,0,0" Name="gbEndereco" VerticalAlignment="Top" Width="436">
+      <Grid>
+        <Label Content="Logradouro:" Height="28" HorizontalAlignment="Left" Margin="0,6,0,0" Name="label3" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="81,6,0,0" Name="tbLogradouro" VerticalAlignment="Top" Width="334" />
+        <Label Content="Número:" Height="28" HorizontalAlignment="Left" Margin="0,0,0,82" Name="label4" VerticalAlignment="Bottom" />
+        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,39,276,0" Name="tbNumero" VerticalAlignment="Top" Width="67" />
+        <Label Content="Complemento:" Height="28" HorizontalAlignment="Left" Margin="155,37,0,0" Name="label5" VerticalAlignment="Top" Width="95" />
+        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,37,9,0" Name="tbComplemento" VerticalAlignment="Top" Width="159" />
+        <Label Content="CEP:" Height="28" HorizontalAlignment="Left" Margin="6,74,0,0" Name="label6" VerticalAlignment="Top" />
+        <src:BaseTextBox Height="23" TipoConteudo="CEP"  HorizontalAlignment="Left" Margin="81,74,0,0" x:Name="tbCEP" VerticalAlignment="Top" Width="67" />
+        <Label Content="Telefone:" Height="28" HorizontalAlignment="Left" Margin="155,69,0,0" Name="label7" VerticalAlignment="Top" />
+        <src:BaseTextBox Height="23" HorizontalAlignment="Left" Margin="256,71,0,0" x:Name="tbTelefone" TipoConteudo="Placa" VerticalAlignment="Top" Width="159" />
+        
+      </Grid>
+    </GroupBox>
+  </Grid>
+</src:BaseWindow>

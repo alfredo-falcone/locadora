@@ -35,7 +35,7 @@ namespace Falcone.Locadora.WPF.Forms
 
     public AluguelManutencao(Aluguel aluguel) : this()
     {
-      this.Aluguel = this.Banco.Aluguels.Where(a => a.Id == aluguel.Id).Single() ;
+      this.Aluguel = this.Banco.Alugueis.Where(a => a.Id == aluguel.Id).Single() ;
       this.dpDataAluguel.IsEnabled = false;
       this.dpDataDevolucao.SelectedDate = DateTime.Now;
     }
@@ -180,12 +180,7 @@ namespace Falcone.Locadora.WPF.Forms
       }
     }
 
-    private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
-    {
-      Regex regex = new Regex("[^0-9]+");
-      e.Handled = regex.IsMatch(e.Text);
-    }
-
+    
     private void btGravar_Click(object sender, RoutedEventArgs e)
     {
       try
@@ -195,7 +190,7 @@ namespace Falcone.Locadora.WPF.Forms
         
         if (this.isNovoAluguel)
         {
-          this.Banco.Aluguels.Add(this.Aluguel);
+          this.Banco.Alugueis.Add(this.Aluguel);
         }
         //else
        //{

@@ -67,6 +67,10 @@
     </Key>
     <Property Name="Id" Type="int" Nullable="false" />
     <Property Name="ClienteId" Type="int" Nullable="false" />
+    <Property Name="NumeroCartao" Type="nvarchar" Nullable="false" />
+    <Property Name="NomeCliente" Type="nvarchar" Nullable="false" />
+    <Property Name="Validade" Type="nvarchar" Nullable="false" />
+    <Property Name="CodigoSeguranca" Type="nvarchar" Nullable="false" />
   </EntityType>
   <EntityType Name="Enderecos">
     <Key>
@@ -217,6 +221,10 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <Property Name="ClienteId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Cliente" Relationship="DbModel.FK_ClienteCartoes" FromRole="DadosCartaoCredito" ToRole="Clientes" />
+          <Property Type="String" Name="NumeroCartao" Nullable="false" />
+          <Property Type="String" Name="NomeCliente" Nullable="false" />
+          <Property Type="String" Name="Validade" Nullable="false" />
+          <Property Type="String" Name="CodigoSeguranca" Nullable="false" />
         </EntityType>
         <EntityType Name="Endereco">
           <Key>
@@ -339,6 +347,10 @@
         <MappingFragment StoreEntitySet="DadosCartaoCreditoes">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+          <ScalarProperty Name="NumeroCartao" ColumnName="NumeroCartao" />
+          <ScalarProperty Name="NomeCliente" ColumnName="NomeCliente" />
+          <ScalarProperty Name="Validade" ColumnName="Validade" />
+          <ScalarProperty Name="CodigoSeguranca" ColumnName="CodigoSeguranca" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -397,7 +409,7 @@
         <EntityTypeShape EntityType="DbModel.Aluguel" Width="1.5" PointX="5.25" PointY="2.25" Height="2.7494921874999996" IsExpanded="true" />
         <EntityTypeShape EntityType="DbModel.Carro" Width="1.5" PointX="2.875" PointY="6.5" Height="2.1725878906249996" IsExpanded="true" />
         <EntityTypeShape EntityType="DbModel.Cliente" Width="1.5" PointX="3" PointY="2.5" Height="2.3648893229166656" IsExpanded="true" />
-        <EntityTypeShape EntityType="DbModel.DadosCartaoCredito" Width="1.5" PointX="5.25" PointY="6.375" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbModel.DadosCartaoCredito" Width="1.5" PointX="6.5" PointY="5.375" Height="2.3648893229166656" IsExpanded="true" />
         <EntityTypeShape EntityType="DbModel.Endereco" Width="1.5" PointX="0.75" PointY="2.5" Height="2.3648893229166652" IsExpanded="true" />
         <EntityTypeShape EntityType="DbModel.Usuario" Width="1.5" PointX="7.75" PointY="0.75" Height="1.9802864583333326" IsExpanded="true" />
         <AssociationConnector Association="DbModel.FK_CarroAluguel" ManuallyRouted="false">
@@ -411,8 +423,8 @@
         </AssociationConnector>
         <AssociationConnector Association="DbModel.FK_ClienteCartoes" ManuallyRouted="false">
           <ConnectorPoint PointX="4.46875" PointY="4.8648893229166656" />
-          <ConnectorPoint PointX="4.46875" PointY="6.40625" />
-          <ConnectorPoint PointX="5.25" PointY="6.40625" />
+          <ConnectorPoint PointX="4.46875" PointY="5.90625" />
+          <ConnectorPoint PointX="6.5" PointY="5.90625" />
         </AssociationConnector>
         <EntityTypeShape EntityType="DbModel.Sequencial" Width="1.5" PointX="2.375" PointY="0.75" Height="1.4033821614583331" />
         <AssociationConnector Association="DbModel.EnderecoCliente">

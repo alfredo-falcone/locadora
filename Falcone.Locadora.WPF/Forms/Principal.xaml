@@ -7,11 +7,11 @@
         <Menu Height="23" HorizontalAlignment="Left" Name="menu" VerticalAlignment="Top" Width="200" Background="#FFEDE8E8" Foreground="#FF030303">
             <MenuItem Header="Cadastros" >
                 <MenuItem Header="Veículo" Click="MenuVeiculo_Click" />
-                <MenuItem Header="Cliente" />
+                <MenuItem Header="Cliente" Click="MenuCliente_Click" />
                 <MenuItem Header="Locação" />
             </MenuItem>
             <MenuItem Header="Relatórios" />
         </Menu>
-        <Label Content="Label" Height="130" HorizontalAlignment="Left" Margin="141,197,0,0" Name="lbCotacao" VerticalAlignment="Top" Width="285" />
+        <Label Content="" Height="130" HorizontalAlignment="Left" Margin="141,197,0,0" Name="lbCotacao" VerticalAlignment="Top" Width="285" />
     </Grid>
 </src:BaseWindow>

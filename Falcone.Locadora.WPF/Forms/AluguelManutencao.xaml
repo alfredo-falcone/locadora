@@ -29,9 +29,9 @@
     <Label Content="Data Devolução:" Height="28" HorizontalAlignment="Left" Margin="243,189,0,0" Name="label6" VerticalAlignment="Top" />
     <DatePicker Height="25" HorizontalAlignment="Left" Language="pt-BR" Margin="347,189,0,0" Name="dpDataDevolucao" VerticalAlignment="Top" Width="115" />
     <Label Content="Km Aluguel:" Height="28" HorizontalAlignment="Left" Margin="18,223,0,0" Name="label7" VerticalAlignment="Top" />
-    <TextBox Height="23" HorizontalAlignment="Right" Margin="0,223,327,0" Name="tbQuilometragemAluguel" PreviewTextInput="NumberValidationTextBox" VerticalAlignment="Top" Width="120" />
+    <src:BaseTextBox TipoConteudo="Digitos" Height="23" HorizontalAlignment="Right" Margin="0,223,327,0" x:Name="tbQuilometragemAluguel"  VerticalAlignment="Top" Width="120" />
     <Label Content="Km Devolução:" Height="28" HorizontalAlignment="Left" Margin="243,221,0,0" Name="label8" VerticalAlignment="Top" />
-    <TextBox Height="23" HorizontalAlignment="Left" Margin="345,221,0,0" PreviewTextInput="NumberValidationTextBox"  Name="tbQuilometragemDevolucao" VerticalAlignment="Top" Width="120" />
-    <Button Content="Gravar" Height="23" HorizontalAlignment="Left" Margin="19,0,0,12" Name="btGravar" Click="btGravar_Click" VerticalAlignment="Bottom" Width="75" />
+    <src:BaseTextBox TipoConteudo="Digitos" Height="23" HorizontalAlignment="Left" Margin="345,221,0,0"  x:Name="tbQuilometragemDevolucao" VerticalAlignment="Top" Width="120" />
+    <Button Content="Gravar" Height="23" HorizontalAlignment="Left" Margin="19,0,0,12" x:Name="btGravar" Click="btGravar_Click" VerticalAlignment="Bottom" Width="75" />
   </Grid>
 </src:BaseWindow>
