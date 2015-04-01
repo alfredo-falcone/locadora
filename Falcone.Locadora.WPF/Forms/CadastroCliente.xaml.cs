@@ -70,7 +70,7 @@ namespace Falcone.Locadora.WPF.Forms
         }
         else
         {
-          ClienteManutencao frmManutencao = new ClienteManutencao();
+          ClienteManutencao frmManutencao = new ClienteManutencao(clienteSelecionado);
           frmManutencao.ShowDialog(this);
           //MessageBox.Show("Edição de cliente " + clienteSelecionado.Nome);
 
@@ -84,6 +84,15 @@ namespace Falcone.Locadora.WPF.Forms
 
     private void rbTodos_Checked(object sender, RoutedEventArgs e)
     {
+      Load();
+    }
+
+    private void btNovoCliente_Click(object sender, RoutedEventArgs e)
+    {
+      ClienteManutencao frmManutencao = new ClienteManutencao();
+      frmManutencao.ShowDialog(this);
+      //MessageBox.Show("Edição de cliente " + clienteSelecionado.Nome);
+
       Load();
     }
 

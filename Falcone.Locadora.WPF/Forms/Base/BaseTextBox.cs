@@ -101,7 +101,7 @@ namespace Falcone.Locadora.WPF.Forms.Base
           this.Text = sbFormatador.ToString();
           this.SelectionStart = this.Text.Length;
           this.SelectionLength = 0;
-          //((TextBox)sender).
+          
           e.Handled = true;
 
         }
@@ -163,7 +163,7 @@ namespace Falcone.Locadora.WPF.Forms.Base
           this.Text = sbFormatador.ToString();
           this.SelectionStart = this.Text.Length;
           this.SelectionLength = 0;
-          //((TextBox)sender).
+          
           e.Handled = true;
 
         }
